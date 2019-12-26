@@ -1,0 +1,61 @@
+<div class="container-fluid">
+<h1>¿Que ha pasado?</h1>
+<hr>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Acciones</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of datos ; let i = index">
+            <th scope="row">{{i+1}}</th>
+
+            <td>{{item.id_usuarios}}</td>
+            <td>{{item.id_categoria}}</td>
+            <td>
+                <label class="badge badge-success" *ngIf="item.estatus == 1">Activo</label>
+                <label class="badge badge-danger" *ngIf="item.estatus == 0">Inactivo</label>
+            </td>
+
+            <td>
+                <button class="btn btn-info mr-1" [routerLink]="['/entrega',item.id]">
+                      <i class="fa fa-pen" ></i>
+                      Editar
+                  </button>
+
+                <button class="btn btn-danger" (click)="borrar(item, i)">
+                      <i class="fa fa-trash" ></i>
+                      Borrar
+                  </button>
+
+            </td>
+        </tr>
+
+
+
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && datos.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn fast">
+    <h4 class="alert-heading">No hay registros</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+    </p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn fast">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+    </p>
+    <p class="mb-0">
+        Espere por favor
+    </p>
+</div>
+</div>

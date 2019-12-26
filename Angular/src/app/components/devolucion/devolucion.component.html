@@ -1,0 +1,61 @@
+<div class="container-fluid">
+<h1>Devolucion </h1>
+  
+<div class="row">
+    <div class="col text-right">
+        <button [routerLink]="['/devoluciones']" class="btn btn-danger">
+          <i class="fa fa-arrow-left"></i> Regresar
+      </button>
+    </div>
+</div>
+
+
+
+<div>
+    <label for="Fecha de entrega">  Fecha de entrega:</label>
+    <br>
+
+    <input [(ngModel)]="devolucion.fechadevolucion" name="fecha" type="date" class="form-control" required placeholder="fecha de entrega " minlength="5" maxlength="40" required pattern="[0-9]+">
+</div>
+
+
+<br>
+
+<label for="usuario">Usuario:</label>
+<select [(ngModel)]="devolucion.id_usuario" class="form-control form-control-sm">
+  <option value="0">Seleccionar</option>
+  <option *ngFor="let usuario of usuarios; let i = index"  required value="{{usuario.id}}">{{usuario.nombre}} {{usuario.paterno}} {{usuario.materno}}</option>
+
+</select>
+
+
+
+
+<label for="herramienta">Herramienta:</label>
+<select [(ngModel)]="devolucion.id_herramienta" class="form-control form-control-sm">
+  <option value="0">Seleccionar</option>
+  <option *ngFor="let herramienta of herramienta; let i = index" value="{{herramienta.id}}">{{herramienta.nombre}}</option>
+
+</select>
+
+
+
+<br>
+
+
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <form (ngSubmit)="guardar( form )" #form="ngForm">
+
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary w-25">
+              <i class="fa fa-save"></i>
+              Guardar
+              </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
